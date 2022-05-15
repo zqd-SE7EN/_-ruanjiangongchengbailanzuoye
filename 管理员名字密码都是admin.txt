@@ -1,0 +1,12 @@
+首先要安装node-v16.15.0-x64.msi
+然后在这个目录的空白处点右键，以管理员身份开两个powershell
+首先在第一个里输入：
+npm install
+cd ./service/
+npm install
+node app.js
+
+然后在第二个输入：
+npm run serve
+
+最后，复制在第二个终端里出现的地址到浏览器就可以打开页面了。
