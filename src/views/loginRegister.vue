@@ -5,19 +5,22 @@
 		<ul>
 			<li class="peizhiList" v-for="(configure,index) in configures">
 				<div v-if="configure.isPortal">
-					域名：<input type="text" v-model="configure.domain">；
-					对外宣称的port：<input type="text" v-model="configure.port">；
-					对外宣称的IP地址：<input type="text" v-model="configure.address">；
-					对bridge宣称的port：<input type="text" v-model="configure.porttobridge">；
-					位于私网的bridge的port：<input type="text" v-model="configure.bridgeport">；
-					密钥：<input type="text" v-model="configure.miyao">
+				<div>
+					域名：<input type="text" v-model="configure.domain">；</div>
+				<div>	对外宣称的port：<input type="text" v-model="configure.port">；</div>
+					
+				<div>	对外宣称的IP地址：<input type="text" v-model="configure.address">；</div>
+				<div>	对bridge宣称的port：<input type="text" v-model="configure.porttobridge">；</div>
+				<div>	位于私网的bridge的port：<input type="text" v-model="configure.bridgeport">；</div>
+				<div>	密钥：<input type="text" v-model="configure.miyao"></div>
 				</div>
 				<div v-else>
-					域名：<input type="text" v-model="configure.domain">；
-					转发服务器IP:port：<input type="text" v-model="configure.redirect">；
-					位于公网的portal的IP：<input type="text" v-model="configure.address">；
-					位于公网的portal的port：<input type="text" v-model="configure.port">；
-					密钥：<input type="text" v-model="configure.miyao">
+					<div>
+					域名：<input type="text" v-model="configure.domain">；</div>
+					<div>转发服务器IP:port：<input type="text" v-model="configure.redirect">；</div>
+					<div>位于公网的portal的IP：<input type="text" v-model="configure.address">；</div>
+					<div>位于公网的portal的port：<input type="text" v-model="configure.port">；</div>
+					<div>密钥：<input type="text" v-model="configure.miyao"></div>
 				</div>
 				<button class="operateConfigureButton" @click="shengchengConfigure(configure)" v-if="!isDeleting">生成这个的配置文件</button>
 				<button class="operateConfigureButton" @click="shanchuConfigure(index)" v-if="!isDeleting">删掉这个</button>
@@ -98,18 +101,26 @@
 					<div class="stitle">你正在配置portal</div>
 					<p class="scontent">如果你的机器位于私网，你应该将机器配置为bridge</p>
 					<button class="sbutton" @click="changeType">去配置bridge</button>
+					<p class="blank">                   </p>
 					<button class="guanliPeizhi"  @click="guanliConfigure">管理配置</button>
+					<p class="blank">                   </p>
 					<button class="guanliUserButton" v-if="isAdmin" @click="guanliUser">管理用户</button>
+					<p class="blank"  v-if="isAdmin">                   </p>
 					<button class="guanliUserButton"  @click="guanliMianban">管理面板</button>
+					<p class="blank">                   </p>
 					<button class="logOutButton" @click="logOut">登出</button>
 				</div>
 				<div class="small-contain" key="smallContainLogin" v-else>
 					<div class="stitle">你正在配置bridge</div>
 					<p class="scontent">如果你的机器位于公网，你应该将该机器配置为portal</p>
 					<button class="sbutton" @click="changeType">去配置portal</button>
+					<p class="blank">                   </p>
 					<button class="guanliPeizhi"  @click="guanliConfigure">管理配置</button>
+					<p class="blank">                   </p>
 					<button class="guanliUserButton" v-if="isAdmin" @click="guanliUser">管理用户</button>
+					<p class="blank" v-if="isAdmin">                   </p>
 					<button class="guanliUserButton"  @click="guanliMianban">管理面板</button>
+					<p class="blank">                   </p>
 					<button class="logOutButton" @click="logOut">登出</button>
 				</div>
 			</div>
@@ -456,7 +467,7 @@
 				this.isGuanliingUser = '';this.form.miyao = ''
 			},
 			
-			saveMianban(){this.form.domain = ''
+			saveMianban(){
 				this.$axios({
 					method:'post',
 					url:'http://127.0.0.1:10520/api/user/saveMianban',
@@ -732,14 +743,14 @@
 		cursor: pointer;
 	}
 	.operateConfigureButton{
-		width: 20%;
-		height: 40px;
+		width: 10%;
+		height: 20px;
 		border-radius: 100px;
 		border: none;
 		outline: rgb(255, 255, 255);;
-		background-color: rgb(241, 218, 247);;
+		background-color: rgb(218, 233, 247);;
 		color: rgb(14, 13, 13);
-		font-size: 1.1em;
+		font-size: 0.5em;
 		cursor: pointer;
 	}
 	.changbutton{
@@ -749,6 +760,7 @@
 		border: none;
 		outline: rgb(255, 255, 255);;
 		background-color: transparent;;
+
 		color: rgb(255, 255, 255);
 		font-size: 1.1em;
 		cursor: pointer;
@@ -829,6 +841,13 @@
 		text-align: center;
 		padding: 2em 4em;
 		line-height: 1.7em;
+	}
+	.blank{
+		font-size: 0.3em;
+		color: #fff;
+		text-align: center;
+		padding: 2em 4em;
+		line-height: 0.3em;
 	}
 	.sbutton{
 		width: 60%;
